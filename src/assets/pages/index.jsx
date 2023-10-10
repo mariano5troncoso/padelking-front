@@ -3,28 +3,30 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { CarouselCustomArrows } from '../../components/carousel';
 import Products from '../../components/Products';
+import Footer from '../../components/Footer';
 
 const user = {
   name: 'Tom Cook',
   email: 'tom@example.com',
   imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    'https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280-768x768.jpg',
 }
+
 const navigation = [
-  { name: 'Inicio', href: '#', current: true },
-  { name: 'Paletas', href: '#', current: false },
-  { name: 'Indumentaria', href: '#', current: false },
-  { name: 'Accesorios', href: '#', current: false },
-  { name: 'Acerca de Nosotros', href: '#', current: false },
+  { name: 'Inicio', href: '/' },
+  { name: 'Paletas', href: '#' },
+  { name: 'Indumentaria', href: '#' },
+  { name: 'Accesorios', href: '#' },
+  { name: 'Acerca de Nosotros', href: '#' },
 ]
+
 const userNavigation = [
-  { name: 'Mi Perfil', href: '#' },
-  { name: 'Configuraciones', href: '#' },
-  { name: 'Cerrar sesión', href: '#' },
+  { name: 'Iniciar Sesión', href: '/login' },
+  { name: 'Registrarse', href: '#' },
 ]
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(' ');
 }
 
 export default function Index() {
@@ -38,13 +40,13 @@ export default function Index() {
         <body class="h-full">
         ```
       */}
-      <div className="min-h-full">
+      <div className="w-[100%]">
         
-        <Disclosure as="nav" className="bg-gray-700">
+        <Disclosure as="nav" className="bg-gray-700 ">
           {({ open }) => (
             <>
-              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="flex h-16 items-center justify-between">
+              <div className="w-full px-4 sm:px-6 lg:px-8">
+                <div className="flex h-16 w-full items-center justify-between">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
                       <img
@@ -56,18 +58,18 @@ export default function Index() {
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
-                          <a
-                            key={item.name}
-                            href={item.href}
-                            className={classNames(
-                              item.current
-                                ? 'bg-gray-900 text-white'
-                                : 'text-gray-300 hover:bg-gray-500 hover:text-white',
-                              'rounded-md px-3 py-2 text-sm font-medium'
-                            )}
-                            aria-current={item.current ? 'page' : undefined}
-                          >
-                            {item.name}
+                          <a href={item.href} key={item.name}>
+                            <Disclosure.Button
+                              key={item.name}
+                              as="a"
+                              className={classNames(
+                                item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-500 hover:text-white',
+                                'rounded-md px-3 py-2 text-sm font-medium'
+                              )}
+                              aria-current={item.current ? 'page' : undefined}
+                            >
+                              {item.name}
+                            </Disclosure.Button>
                           </a>
                         ))}
                       </div>
@@ -106,14 +108,15 @@ export default function Index() {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <a
-                                    href={item.href}
-                                    className={classNames(
-                                      active ? 'bg-gray-100' : '',
-                                      'block px-4 py-2 text-sm text-gray-700'
-                                    )}
-                                  >
-                                    {item.name}
+                                  <a href={item.href}>
+                                    <a
+                                      className={classNames(
+                                        active ? 'bg-gray-100' : '',
+                                        'block px-4 py-2 text-sm text-gray-700'
+                                      )}
+                                    >
+                                      {item.name}
+                                    </a>
                                   </a>
                                 )}
                               </Menu.Item>
@@ -143,18 +146,19 @@ export default function Index() {
               <Disclosure.Panel className="md:hidden">
                 <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                   {navigation.map((item) => (
-                    <Disclosure.Button
-                      key={item.name}
-                      as="a"
-                      href={item.href}
-                      className={classNames(
-                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'block rounded-md px-3 py-2 text-base font-medium'
-                      )}
-                      aria-current={item.current ? 'page' : undefined}
-                    >
-                      {item.name}
-                    </Disclosure.Button>
+                    <a href={item.href} key={item.name}>
+                      <Disclosure.Button
+                        key={item.name}
+                        as="a"
+                        className={classNames(
+                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'block rounded-md px-3 py-2 text-base font-medium'
+                        )}
+                        aria-current={item.current ? 'page' : undefined}
+                      >
+                        {item.name}
+                      </Disclosure.Button>
+                    </a>
                   ))}
                 </div>
                 <div className="border-t border-gray-700 pb-3 pt-4">
@@ -177,14 +181,15 @@ export default function Index() {
                   </div>
                   <div className="mt-3 space-y-1 px-2">
                     {userNavigation.map((item) => (
-                      <Disclosure.Button
-                        key={item.name}
-                        as="a"
-                        href={item.href}
-                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
-                      >
-                        {item.name}
-                      </Disclosure.Button>
+                      <a href={item.href} key={item.name}>
+                        <Disclosure.Button
+                          key={item.name}
+                          as="a"
+                          className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                        >
+                          {item.name}
+                        </Disclosure.Button>
+                      </a>
                     ))}
                   </div>
                 </div>
@@ -194,13 +199,14 @@ export default function Index() {
         </Disclosure>
         <CarouselCustomArrows/>
         <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+          <div className="max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">Padel KING</h1>
           </div>
         </header>
         <main>
-          <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">{/* Your content */}</div>
+          <div className="max-w-7xl py-6 sm:px-6 lg:px-8">{/* Your content */}</div>
           <Products/>
+          <Footer/>
         </main>
       </div>
     </>
