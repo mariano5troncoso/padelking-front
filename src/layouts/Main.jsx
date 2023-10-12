@@ -1,12 +1,13 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom"
 
-
-export default function Main() {
-  return (
-    <div className="h-screen w-screen bg-black p-0 overflow-x-hidden">
-      <Outlet />
-      
-    </div>
-  );
+export default function Main(){
+    return (
+      <>
+          <div className="flex-col min-h-[100vh] w-full justify-between items-center bg-gray-200">
+             
+              <Outlet />
+          </div>
+          
+      </>
+    )
 }
