@@ -3,12 +3,12 @@ import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { BellIcon, XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline';
 
-
 const navigation = [
   { name: 'Inicio', href: '/', current: true },
   { name: 'Paletas', href: '/paletas', current: false },
   { name: 'Accesorios', href: '#', current: false },
   { name: 'Indumentaria', href: '#', current: false },
+  { name: 'Quienes Somos', href: '/nosotros', current: false },
 ];
 
 function classNames(...classes) {
@@ -26,7 +26,7 @@ function NavList() {
             item.current
               ? 'bg-gray-900 text-white'
               : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-            'rounded-md px-3 py-2 text-sm font-medium'
+            'rounded-md px-3 py-2 text-xl' // Aumenta el tamaño del texto
           )}
           aria-current={item.current ? 'page' : undefined}
         >
@@ -102,7 +102,7 @@ export function NavbarSimple() {
                     <Menu.Item>
                       {({ active }) => (
                         <a
-                          href="#"
+                          href="/iniciar-sesion"
                           className={classNames(
                             active ? 'bg-gray-100' : '',
                             'block px-4 py-2 text-sm text-gray-700'
