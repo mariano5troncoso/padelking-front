@@ -1,12 +1,11 @@
-import { createBrowserRouter, useParams } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Main from "../layouts/Main";
 import Index from "../pages/Index";
-import Paletas from "../pages/Paletas"
+import Paletas from "../pages/Paletas";
 import { SignUp } from "../components/SignUp";
 import { SignIn } from "../components/SignIn";
 import AboutUS from "../pages/AboutUs";
-
-
+import ProductDetails from "../components/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -33,11 +32,13 @@ const router = createBrowserRouter([
         path: '/nosotros',
         element: <AboutUS />
       },
+      {
+        path: '/product/:id',
+        element: <ProductDetails />
+      },
       
     ],
-
   },
-  
 ]);
 
 export default router;
