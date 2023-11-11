@@ -3,7 +3,7 @@ export const apiUrl = "http://localhost:4000/api/";
 export const api = axios.create({ baseURL: apiUrl });
 
 export const endpoints = {
-  signin: "auth/signin",
+  signin: "auth/login",
   register: "auth/register",
   read_categories: "categories/",
   signout: "auth/signout",
