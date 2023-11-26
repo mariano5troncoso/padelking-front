@@ -23,6 +23,7 @@ const inputLabelStyle = {
 export function SignUp() {
   const inputName = useRef(null);
   const inputEmail = useRef(null);
+  const inputPhoto = useRef(null);
   const inputPassword = useRef(null);
   const navigate = useNavigate();
 
@@ -37,6 +38,7 @@ export function SignUp() {
 
     try {
       const response = await api.post(apiUrl + endpoints.register, data);
+
 
       if (response.data.success) {
         Swal.fire({
@@ -83,6 +85,9 @@ export function SignUp() {
 
                 <span className="text-lg font-medium text-white">Email</span>
                 <Input ref={inputEmail} size="lg" labelProps={inputLabelStyle} style={inputStyle} />
+
+                <span className="text-lg font-medium text-white">Foto</span>
+                <Input ref={inputPhoto} size="lg" labelProps={inputLabelStyle} style={inputStyle} />
 
                 <span className="text-lg font-medium text-white">Contraseña</span>
                 <Input ref={inputPassword} type="password" size="lg" labelProps={inputLabelStyle} style={inputStyle} />

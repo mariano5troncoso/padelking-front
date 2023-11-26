@@ -1,9 +1,11 @@
 import React, { useRef } from "react";
 import { Card, Input, Checkbox, Button, Typography } from "@material-tailwind/react";
 import Swal from 'sweetalert2';
-import { api, apiUrl, endpoints } from "../utils/api";
+import axios from 'axios'; 
 import { Fade } from "react-awesome-reveal";
 import { useNavigate } from "react-router-dom";
+import { endpoints } from "../utils/api";
+
 
 const formContainerStyle = {
   display: "flex",
@@ -28,6 +30,7 @@ export function SignIn() {
   const inputEmail = useRef(null);
   const inputPassword = useRef(null);
   const navigate = useNavigate();
+  const apiUrl = "http://localhost:4000/";
 
   const signin = async (event) => {
     event.preventDefault();
@@ -38,7 +41,7 @@ export function SignIn() {
     };
 
     try {
-      const response = await api.post(apiUrl + endpoints.signin, data);
+      const response = await axios.post(apiUrl + endpoints.signin, data);
 
       if (response.data.success) {
         Swal.fire({
@@ -90,7 +93,7 @@ export function SignIn() {
                 <Input id="password" ref={inputPassword} type="password" size="lg" style={inputStyle} />
               </div>
               <Checkbox label={<Typography variant="small" color="white" className="flex items-center font-normal">Acepto los <a href="#" className="font-medium transition-colors hover:text-gray-900">&nbsp;Términos y condiciones</a></Typography>} containerProps={{ className: "-ml-2.5" }} />
-              <Button className="mt-6" fullWidth>
+              <Button type="submit" className="mt-6" fullWidth>
                 Iniciar Sesión
               </Button>
               <Typography color="white" className="mt-4 text-center font-normal">
